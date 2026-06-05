@@ -1,0 +1,91 @@
+<section class="bg-slate-50 py-24">
+  <div class="mx-auto max-w-3xl px-6">
+
+    <div class="mb-12 text-center">
+      <span class="text-sm font-semibold uppercase tracking-widest text-violet-600">
+        Contacto
+      </span>
+
+      <h1 class="mt-4 text-4xl font-extrabold text-slate-900">
+        Crear Solicitud
+      </h1>
+
+      <p class="mt-4 text-slate-600">
+        Describe tu idea y selecciona el programador con quien deseas trabajar.
+      </p>
+    </div>
+
+    <form
+      class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"
+    >
+
+      <div class="grid gap-6">
+
+        <!-- Nombre -->
+        <div>
+          <label class="mb-2 block font-medium text-slate-700">
+            Nombre
+          </label>
+
+          <input
+            type="text"
+            placeholder="Ingresa tu nombre"
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-violet-500"
+          />
+        </div>
+
+        <!-- Correo -->
+        <div>
+          <label class="mb-2 block font-medium text-slate-700">
+            Correo electrónico
+          </label>
+
+          <input
+            type="email"
+            placeholder="correo@ejemplo.com"
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-violet-500"
+          />
+        </div>
+
+        <!-- Programador -->
+        <div>
+          <label class="mb-2 block font-medium text-slate-700">
+            Programador
+          </label>
+
+          <select
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-violet-500"
+          >
+            <option>Seleccionar programador</option>
+            <option>Bryan</option>
+            <option>Josué Abad</option>
+          </select>
+        </div>
+
+        <!-- Proyecto -->
+        <div>
+          <label class="mb-2 block font-medium text-slate-700">
+            Idea del proyecto
+          </label>
+
+          <textarea
+            rows="6"
+            placeholder="Describe tu proyecto..."
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-violet-500"
+          ></textarea>
+        </div>
+
+        <!-- Botón -->
+        <button
+          type="submit"
+          class="rounded-xl bg-violet-600 px-6 py-4 font-semibold text-white transition hover:bg-violet-700"
+        >
+          Enviar solicitud
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+</section>
