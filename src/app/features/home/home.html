@@ -59,63 +59,97 @@
       </p>
     </div>
 
-    <div class="grid gap-8 md:grid-cols-3">
+    @if (servicios$ | async; as response) {
+      <div class="grid gap-8 md:grid-cols-3">
 
-      <div
-        class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl"
-      >
-        <div
-          class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-100 text-2xl"
-        >
-          💻
-        </div>
+        @for (servicio of response.data; track servicio.id) {
+          @if (servicio.activo) {
+            <div
+              class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl"
+            >
+              <div
+                class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-100 text-2xl"
+              >
+                {{ getIcon(servicio.icono) }}
+              </div>
 
-        <h3 class="text-xl font-bold text-slate-900">
-          Desarrollo Frontend
-        </h3>
+              <h3 class="text-xl font-bold text-slate-900">
+                {{ servicio.nombre }}
+              </h3>
 
-        <p class="mt-4 text-slate-600">
-          Aplicaciones web modernas utilizando Angular, Tailwind CSS y TypeScript.
+              <p class="mt-4 text-slate-600">
+                {{ servicio.descripcion }}
+              </p>
+            </div>
+          }
+        }
+
+      </div>
+    } @else {
+      <div class="rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+        <p class="text-slate-600">
+          Cargando servicios...
         </p>
       </div>
+    }
 
-      <div
-        class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl"
-      >
-        <div
-          class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-100 text-2xl"
-        >
-          ⚙️
-        </div>
+  </div>
+</section>
 
-        <h3 class="text-xl font-bold text-slate-900">
-          Desarrollo Backend
-        </h3>
+<!-- PROYECTOS DESTACADOS -->
+<section class="bg-slate-50 py-24">
+  <div class="mx-auto max-w-7xl px-6">
 
-        <p class="mt-4 text-slate-600">
-          APIs, autenticación, Firestore, Firebase y arquitectura de software.
-        </p>
-      </div>
+    <div class="mb-16 text-center">
+      <span class="text-sm font-semibold uppercase tracking-widest text-violet-600">
+        Portafolio
+      </span>
 
-      <div
-        class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl"
-      >
-        <div
-          class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-2xl"
-        >
-          🎨
-        </div>
+      <h2 class="mt-4 text-4xl font-bold text-slate-900">
+        Proyectos destacados
+      </h2>
 
-        <h3 class="text-xl font-bold text-slate-900">
-          Diseño UI/UX
-        </h3>
-
-        <p class="mt-4 text-slate-600">
-          Interfaces intuitivas, responsivas y centradas en la experiencia del usuario.
-        </p>
-      </div>
-
+      <p class="mt-4 text-slate-600">
+        Proyectos seleccionados desde Strapi CMS.
+      </p>
     </div>
+
+    @if (proyectosDestacados$ | async; as response) {
+      <div class="grid gap-8 md:grid-cols-3">
+
+        @for (project of response.data; track project.id) {
+          <article class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+            <img
+              [src]="getImageUrl(project.imagenPrincipal?.url)"
+              [alt]="project.nombre"
+              class="h-52 w-full object-cover"
+            />
+
+            <div class="p-6">
+              <span class="rounded-full bg-violet-100 px-3 py-1 text-sm font-medium text-violet-700">
+                {{ project.tipoProyecto }}
+              </span>
+
+              <h3 class="mt-4 text-xl font-bold text-slate-900">
+                {{ project.nombre }}
+              </h3>
+
+              <p class="mt-3 text-slate-600">
+                {{ project.descripcionBreve }}
+              </p>
+
+              <a
+                [routerLink]="['/proyectos', project.slug]"
+                class="mt-6 inline-block font-semibold text-violet-600"
+              >
+                Ver proyecto →
+              </a>
+            </div>
+          </article>
+        }
+
+      </div>
+    }
 
   </div>
 </section>

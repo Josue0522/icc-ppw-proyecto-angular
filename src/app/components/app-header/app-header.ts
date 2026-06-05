@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -7,4 +7,16 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './app-header.html',
   styleUrl: './app-header.css',
 })
-export class AppHeaderComponent {}
+export class AppHeaderComponent {
+
+isMobileMenuOpen = signal(false);
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen.update((value) => !value);
+  }
+
+  closeMobileMenu() {
+    this.isMobileMenuOpen.set(false);
+  }
+
+}
