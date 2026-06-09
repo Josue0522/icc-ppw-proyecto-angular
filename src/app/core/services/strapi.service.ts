@@ -19,6 +19,7 @@ export interface Programador {
   fotoPerfil?: {
     url: string;
   };
+  proyectos?: Proyecto[];
 }
 
 export interface Proyecto {
@@ -27,7 +28,7 @@ export interface Proyecto {
   slug: string;
   descripcionBreve: string;
   descripcionCompleta: any[];
-  tipoProyecto: string;
+  tipoProyecto: string | null;
   tecnologias: string[];
   repositorio: string;
   demo: string;
@@ -56,8 +57,8 @@ export interface Servicio {
 export class StrapiService {
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:1337/api';
-  private uploadsUrl = 'http://localhost:1337';
+  private apiUrl = 'https://reassuring-sunrise-734f67d339.strapiapp.com/api';
+  private uploadsUrl = 'https://reassuring-sunrise-734f67d339.strapiapp.com';
 
   getProgramadores() {
     return this.http.get<StrapiResponse<Programador>>(
@@ -67,7 +68,7 @@ export class StrapiService {
 
   getProgramadorBySlug(slug: string) {
     return this.http.get<StrapiResponse<Programador>>(
-      `${this.apiUrl}/programadors?filters[slug][$eq]=${slug}&populate=*`
+      `${this.apiUrl}/programadors?filters[slug][$eq]=${slug}&populate[fotoPerfil]=true&populate[proyectos][populate][imagenPrincipal]=true`
     );
   }
 
@@ -97,6 +98,11 @@ export class StrapiService {
 
   getImageUrl(path?: string) {
     if (!path) return '/images/default-user.png';
+
+    if (path.startsWith('http')) {
+      return path;
+    }
+
     return `${this.uploadsUrl}${path}`;
   }
 }
