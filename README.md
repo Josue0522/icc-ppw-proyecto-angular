@@ -116,3 +116,17 @@ Se desarrolló Auth Guard encargado de proteger las rutas que requieren autentic
 
 ### Guest guard
 Se implementó Guest guard para evitar que los usuarios autenticados accedan a /login o /registro
+
+## Despliegue de la página
+
+Una vez finalizado el proyecto, se procedió a realizar el despliegue de la aplicación web utilizando Firebase hosting para el frontend y strapi cloud para el backend.
+
+Después se configuró Firebase Hosting mediante Firebase CLI, asociando el proyecto local llamado DevDuo Studio.
+
+Se configuró el archivo Firebase.json para publicar el contenido generado por Angular dentro del directorio.
+
+Por último se realizó el despliegue utilizando:
+
+firebase deploy --only hosting
+
+Como resultado, la aplicación quedó disponible públicamente mediante URL proporcionada por Firebase Hosting
