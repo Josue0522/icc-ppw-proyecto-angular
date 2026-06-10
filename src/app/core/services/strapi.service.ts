@@ -66,8 +66,6 @@ export class StrapiService {
     );
   }
 
-  
-
 
   getProyectos() {
     return this.http.get<StrapiResponse<Proyecto>>(
@@ -103,10 +101,10 @@ export class StrapiService {
     return `${this.uploadsUrl}${path}`;
   }
 
+
   getProgramadorBySlug(slug: string) {
   return this.http.get<StrapiResponse<Programador>>(
     `${this.apiUrl}/programadors?filters[slug][$eq]=${slug}&populate[fotoPerfil]=true&populate[proyectos][populate][imagenPrincipal]=true`
   );
 }
-
 }
