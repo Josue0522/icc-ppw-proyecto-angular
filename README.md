@@ -1,4 +1,31 @@
-# Pollo tu parte
+# Diseño UI
+La interfaz de usuario del proyecto fue desarrollada utilizando Angular como framework principal para el frontend. Se implementó una arquitectura basada en componentes con el objetivo de mantener una estructura organizada, reutilizable y fácil de mantener.
+Se diseñaron las siguientes vistas principales:
+    - Página de inicio.
+    - Listado de programadores.
+    - Detalle individual de programadores.
+    - Listado de proyectos.
+    - Detalle de proyectos.
+    - Formulario de solicitudes de contacto.
+    - Listado de solicitudes realizadas por los usuarios.
+    - Pantallas de inicio de sesión y registro'
+Se utilizó Tailwind CSS y componentes personalizados, permitiendo construir una interfaz moderna, adaptable y responsive para dispositivos móviles y de escritorio. También se implementó un sistema de navegación mediante rutas de Angular, facilitando el acceso a cada sección de la aplicación. Con el objetivo de mejorar la seguridad y la experiencia del usuario, se incorporaron Guards de Angular para restringir el acceso a determinadas rutas cuando el usuario no se encuentra autenticado, así como para evitar que usuarios autenticados accedan nuevamente a las pantallas de inicio de sesión o registro. Finalmente, la interfaz fue integrada con Firebase Authentication para la gestión de usuarios y con Firestore para el almacenamiento de solicitudes de
+contacto
+
+## Implementación del CMS con Strapi
+Para la administración de datos se utilizó Strapi como sistema de gestión de contenidos (CMS) desacoplado. Esta herramienta permitió administrar la información de programadores, proyectos y servicios desde una interfaz web sin necesidad de modificar directamente el código fuente de la aplicación.
+Dentro de Strapi se definieron los siguientes tipos de contenido:
+    - Programador
+    - Proyecto 
+    - Servicio
+El link del github en el que se encuentra el strapi es el siguiente:
+    - https://github.com/Josue0522/icc-ppw-proyecto-strappi.git
+##
+Cada colección fue configurada con los atributos necesarios para almacenar información descriptiva, enlaces externos, imágenes y relaciones entre entidades. Se establecieron relaciones entre programadores y proyectos, permitiendo asociar varios proyectos a cada programador y mostrar esta información dinámicamente dentro de la aplicación Angular.
+Además, se utilizaron los servicios de carga de archivos de Strapi para almacenar imágenes de perfil y recursos visuales relacionados con los proyectos desarrollados. Posteriormente el CMS fue desplegado en Strapi Cloud, permitiendo disponer
+de una API pública accesible desde Internet. La aplicación Angular consume esta API mediante peticiones HTTP para obtener de forma dinámica la información almacenada en el CMS. Gracias a esta integración, cualquier modificación realizada desde el panel
+administrativo de Strapi se refleja automáticamente en la aplicación web sin necesidad de realizar nuevas compilaciones o modificaciones en el código del frontend
+    
 
 ## Proyectos asociados en perfil
 
