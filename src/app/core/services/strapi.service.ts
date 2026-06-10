@@ -66,11 +66,6 @@ export class StrapiService {
     );
   }
 
-  getProgramadorBySlug(slug: string) {
-    return this.http.get<StrapiResponse<Programador>>(
-      `${this.apiUrl}/programadors?filters[slug][$eq]=${slug}&populate[fotoPerfil]=true&populate[proyectos][populate][imagenPrincipal]=true`
-    );
-  }
 
   getProyectos() {
     return this.http.get<StrapiResponse<Proyecto>>(

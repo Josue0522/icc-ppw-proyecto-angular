@@ -17,11 +17,10 @@
 
     <form
       class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"
+      (ngSubmit)="submitRequest()"
     >
-
       <div class="grid gap-6">
 
-        <!-- Nombre -->
         <div>
           <label class="mb-2 block font-medium text-slate-700">
             Nombre
@@ -29,12 +28,13 @@
 
           <input
             type="text"
+            name="nombre"
+            [(ngModel)]="nombre"
             placeholder="Ingresa tu nombre"
             class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-violet-500"
           />
         </div>
 
-        <!-- Correo -->
         <div>
           <label class="mb-2 block font-medium text-slate-700">
             Correo electrónico
@@ -42,27 +42,35 @@
 
           <input
             type="email"
+            name="correo"
+            [(ngModel)]="correo"
             placeholder="correo@ejemplo.com"
             class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-violet-500"
           />
         </div>
 
-        <!-- Programador -->
         <div>
           <label class="mb-2 block font-medium text-slate-700">
             Programador
           </label>
 
           <select
+            name="programadorSlug"
+            [(ngModel)]="programadorSlug"
             class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-violet-500"
           >
-            <option>Seleccionar programador</option>
-            <option>Bryan</option>
-            <option>Josué Abad</option>
+            <option value="">Seleccionar programador</option>
+
+            @if (programadores$ | async; as response) {
+              @for (programador of response.data; track programador.id) {
+                <option [value]="programador.slug">
+                  {{ programador.nombreCompleto }}
+                </option>
+              }
+            }
           </select>
         </div>
 
-        <!-- Proyecto -->
         <div>
           <label class="mb-2 block font-medium text-slate-700">
             Idea del proyecto
@@ -70,21 +78,34 @@
 
           <textarea
             rows="6"
+            name="descripcionProyecto"
+            [(ngModel)]="descripcionProyecto"
             placeholder="Describe tu proyecto..."
             class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-violet-500"
           ></textarea>
         </div>
 
-        <!-- Botón -->
+        @if (errorMessage()) {
+          <div class="rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600">
+            {{ errorMessage() }}
+          </div>
+        }
+
+        @if (successMessage()) {
+          <div class="rounded-xl bg-green-50 px-4 py-3 text-sm font-medium text-green-600">
+            {{ successMessage() }}
+          </div>
+        }
+
         <button
           type="submit"
-          class="rounded-xl bg-violet-600 px-6 py-4 font-semibold text-white transition hover:bg-violet-700"
+          [disabled]="isLoading()"
+          class="rounded-xl bg-violet-600 px-6 py-4 font-semibold text-white transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          Enviar solicitud
+          {{ isLoading() ? 'Enviando...' : 'Enviar solicitud' }}
         </button>
 
       </div>
-
     </form>
 
   </div>

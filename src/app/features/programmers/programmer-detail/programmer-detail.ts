@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { map, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap } from 'rxjs';
 import { StrapiService } from '../../../core/services/strapi.service';
 
 @Component({
@@ -19,7 +19,11 @@ export class ProgrammerDetail {
       const slug = params.get('slug') ?? '';
       return this.strapiService.getProgramadorBySlug(slug);
     }),
-    map((response) => response.data[0])
+    map((response) => response.data[0] ?? null),
+    catchError((error) => {
+      console.error('Error cargando programador:', error);
+      return of(null);
+    })
   );
 
   getImageUrl(path?: string) {
