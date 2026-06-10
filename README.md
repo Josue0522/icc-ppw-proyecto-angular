@@ -7,8 +7,8 @@ Se diseñaron las siguientes vistas principales:
     - Listado de proyectos.
     - Detalle de proyectos.
     - Formulario de solicitudes de contacto.
-    - Listado de solicitudes realizadas por los usuarios.
-    - Pantallas de inicio de sesión y registro'
+    - Listado de solicitudes realizadas por los usuarios. <br>
+    - Pantallas de inicio de sesión y registró
 Se utilizó Tailwind CSS y componentes personalizados, permitiendo construir una interfaz moderna, adaptable y responsive para dispositivos móviles y de escritorio. También se implementó un sistema de navegación mediante rutas de Angular, facilitando el acceso a cada sección de la aplicación. Con el objetivo de mejorar la seguridad y la experiencia del usuario, se incorporaron Guards de Angular para restringir el acceso a determinadas rutas cuando el usuario no se encuentra autenticado, así como para evitar que usuarios autenticados accedan nuevamente a las pantallas de inicio de sesión o registro. Finalmente, la interfaz fue integrada con Firebase Authentication para la gestión de usuarios y con Firestore para el almacenamiento de solicitudes de
 contacto
 
